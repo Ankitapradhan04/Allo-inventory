@@ -2,10 +2,6 @@
 
 A multi-warehouse inventory and reservation platform built with Next.js, Prisma, and PostgreSQL. Solves the checkout race condition: stock is held for 10 minutes while payment processes, then confirmed or released atomically.
 
-## Live Demo
-
-> **URL:** `https://allo-inventory.vercel.app` *(replace with your deployed URL)*
-
 ## Tech Stack
 
 - **Next.js 15** (App Router) + **TypeScript**
@@ -88,10 +84,3 @@ Pass `Idempotency-Key: your-unique-key` header on POST /api/reservations or conf
 - Cron granularity is 1 minute — Redis keyspace TTL would be sub-second
 - No auth — reservations aren't tied to user sessions
 - No distributed locking — atomic UPDATE works for single-region Postgres; multi-region would need Redlock
-
-## Deployment
-
-1. Push to GitHub
-2. Create Postgres DB on Neon (neon.tech — free tier)
-3. Import repo at vercel.com/new, set DATABASE_URL + CRON_SECRET env vars
-4. Run: `DATABASE_URL="..." npx prisma migrate deploy && npm run db:seed`
